@@ -11,11 +11,14 @@ seeds = 0
 plantedSeeds = 0
 fields = 5
 firstRun = True
+month = 0
 
 monsterdifficulty = 0
 monsterattackchance = 50
 
 while True:
+    month += 1
+    print(f"It is month **{month}**!")
 
     if firstRun == False:
         if plantedSeeds > 0:
@@ -31,29 +34,37 @@ while True:
     playerOption = playerOption.upper()
     print(playerOption)
     if playerOption == "MINE":
+        gemgot = False
         stone += 5
         iron += 2
         gold += 1
         gemCheck = random.randint(0, 100)
         if gemCheck <= 20:
             gems += 1
-    
+            gemgot = True
+            print("You got **5** stone, **2** iron, **1** gold and **1** gem!")
+        else:
+            print("You got **5** stone, **2** iron and **1** gold")
+
     elif playerOption == "FARM":
         if seeds > fields:
             plantedSeeds = fields
             seeds -= fields
+            print(f"You planted **{fields}** seeds!")
         else:
             plantedSeeds = seeds
+            print(f"You planted **{seeds}** seeds!")
             seeds = 0
     
     elif playerOption == "CHOP":
         wood += 5
-
+        print(f"You got 5 wood!")
     elif playerOption == "LOOK":
         seeds += 5
-
+        print(f"You found 5 seeds!")
     elif playerOption == "HUNT":
         food += 5
+        print(f"You got 5 food!")
 
     VanityChoice = input ("Would you want to BUILD something or RESEARCH new things?")
     VanityChoice = VanityChoice.upper()
@@ -78,3 +89,4 @@ while True:
         break
     else:
         print(f"{wood} wood, {plantedSeeds} planted seeds, {food} food, {stone} stone, {fields} fields, {seeds} seeds")
+        print("============================== NEW MONTH =====================================")
